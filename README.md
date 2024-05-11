@@ -18,7 +18,7 @@ ruby sudoku.rb
 
 ```bash
 X Y N : Pour placer le chiffre N à la position X Y, puis taper entrée
-R : Pour relire les règles
+R : Pour lire les règles
 H : Pour afficher la valeur la plus utilisée dans la grille
 Q : Pour quitter
 ```
