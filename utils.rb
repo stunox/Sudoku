@@ -19,7 +19,7 @@ def yellow(text)
 end
 
 def outOfRange(n, range)
-    if n < 1 or n > range
+    if n > range
         return true
     end
 end

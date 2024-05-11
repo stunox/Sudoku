@@ -28,7 +28,8 @@ Q : Pour quitter
 - Chaque ligne doit contenir tous les chiffres de 1 à n, n étant la taille de la grille
 - Chaque colonne doit contenir tous les chiffres de 1 à n, n étant la taille de la grille
 - Chaque sous-grille, appelé bloc, doit contenir tous les chiffres de 1 à n, n étant la taille de la grille
-- Il n'est pas possible d'effacer un chiffre déjà placé (pour le moment, une mise à jour est probable pour séparer les chiffres fixes des chiffres modifiables)
+- ~~Il n'est pas possible d'effacer un chiffre déjà placé~~
+- **_UPDATE_ : Il est désormais possible d'effacer un chiffre déjà placé en le remplaçant par un 0, hormis les chiffres initiaux**
 
 ## Auteur
 

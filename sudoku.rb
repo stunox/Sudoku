@@ -46,11 +46,12 @@ class Grid
 end
 
 class Square
-    def initialize(value = nil, line = nil, column = nil, block = nil)
+    def initialize(value = nil, line = nil, column = nil, block = nil, mutable = true)
         @value = value
         @line = line
         @column = column
         @block = block
+        @mutable = mutable
     end
 
     def get_value
@@ -71,6 +72,10 @@ class Square
 
     def is_empty
         return @value == 0 ? true : false
+    end
+
+    def is_mutable
+        return @mutable
     end
 end
 
@@ -94,7 +99,7 @@ def create_grid(difficulty, n = nil)
         line = []
         value.split(" ").each do |value|
             block = (i / Math.sqrt(grid.get_size).to_i).to_i * Math.sqrt(grid.get_size).to_i + line.size / Math.sqrt(grid.get_size).to_i
-            line.push(Square.new(value.to_i, i, line.size, block))
+            line.push(Square.new(value.to_i, i, line.size, block, value.to_i == 0 ? true : false))
         end
         grid.add_line(line)
     end
@@ -206,25 +211,35 @@ def start_game(grid)
                 puts red("Invalid input !")
             else
                 square = grid.get_line(x)[y-1]
-                unless square.is_empty
-                    puts red("This square is not empty")
-                else
-                    is_line_ok = check_line(grid, x, n)
-                    is_column_ok = check_column(grid, y, n)
-                    is_block_ok = check_block(grid, x, y, n)
-                    if not is_line_ok or not is_column_ok or not is_block_ok
-                        if not is_line_ok
-                            puts red("This number is already in the line")
-                        end
-                        if not is_column_ok
-                            puts red("This number is already in the column")
-                        end
-                        if not is_block_ok
-                            puts red("This number is already in the block")
-                        end
-                    else
+
+                if n == 0
+                    if square.is_mutable
                         square.set_value(n)
-                        puts green("Square filled !")
+                        puts green("Square #{x} #{y} emptied !")
+                    else
+                        puts red("You can't change this square")
+                    end
+                else
+                    unless square.is_empty
+                        puts red("This square is not empty")
+                    else
+                        is_line_ok = check_line(grid, x, n)
+                        is_column_ok = check_column(grid, y, n)
+                        is_block_ok = check_block(grid, x, y, n)
+                        if not is_line_ok or not is_column_ok or not is_block_ok
+                            if not is_line_ok
+                                puts red("This number is already in the line")
+                            end
+                            if not is_column_ok
+                                puts red("This number is already in the column")
+                            end
+                            if not is_block_ok
+                                puts red("This number is already in the block")
+                            end
+                        else
+                            square.set_value(n)
+                            puts green("Square filled !")
+                        end
                     end
                 end
             end
