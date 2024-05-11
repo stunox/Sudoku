@@ -4,7 +4,7 @@ Programme interactif non graphique du jeu Sudoku
 
 ## Prérequis
 
-- (Ruby)[https://www.ruby-lang.org/fr/] >= 2.6.5
+- [Ruby](https://www.ruby-lang.org/fr/) >= 2.6.5
 
 ## Installation
 
